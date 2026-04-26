@@ -91,12 +91,28 @@ class CalculatorTest {
 
     //TODO hier weitere Tests erstellen
 
-    @Test    @DisplayName("Sollte einen Punkt auf der rechten Seite des Screens anzeigen, sofern noch keiner da steht ")
+    @Test
+    @DisplayName("Sollte einen Punkt auf der rechten Seite des Screens anzeigen, sofern noch keiner da steht ")
     void testPressDotKey(){
         Calculator calc = new Calculator();
         calc.pressDigitKey(1);
         calc.pressDotKey();
         String expected = "1.";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Sollte beim ersten Clear nur den Screen löschen, aber die Operation behalten")
+    void testPressClearKeyOnce(){
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);
+        calc.pressClearKey();
+        calc.pressDigitKey(4);
+        calc.pressEqualsKey();
+        String expected = "9";
         String actual = calc.readScreen();
         assertEquals(expected, actual);
     }
