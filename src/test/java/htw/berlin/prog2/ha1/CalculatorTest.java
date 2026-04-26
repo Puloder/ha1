@@ -90,5 +90,15 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+    @Test    @DisplayName("Sollte einen Punkt auf der rechten Seite des Screens anzeigen, sofern noch keiner da steht ")
+    void testPressDotKey(){
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(1);
+        calc.pressDotKey();
+        String expected = "1.";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
 }
 
