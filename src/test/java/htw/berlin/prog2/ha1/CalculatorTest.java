@@ -116,5 +116,23 @@ class CalculatorTest {
         String actual = calc.readScreen();
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("Sollte nun noch zusätzlich latestOpeation und/oder latestValue einen Wert haben, wird dieser Wert(screen) beim zweiten Aufruf auf (Leer)/0.0 gesetzt.")
+    void testPressClearKeyTwiceANDEqualsKey(){
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);
+        calc.pressClearKey();
+        calc.pressClearKey();
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+        String expected = "2";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
 }
+
+
 
